@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore the vibrant gallery of VibeByJacque, showcasing unforgettable moments with food, music, and vibes.">
+    <meta name="keywords" content="VibeByJacque, gallery, restaurant, events, food, music, vibes">
+    <meta name="author" content="Ntihuba Wisman">
+    <title>VibeByJacque - Gallery</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Ropa+Sans&family=Inter&display=swap" rel="stylesheet">
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --gold: #FFD700;
+            --black: #000000;
+            --white: #FFFFFF;
+            --shadow: 0 6px 20px rgba(0,0,0,0.2);
+            --transition: all 0.3s ease;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        a { color: inherit; text-decoration: none; }
+        button { outline: none; border: none; background: none; cursor: pointer; }
+
+        body {
+            font-family: 'Ropa Sans', sans-serif;
+            color: var(--black);
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        a:focus, button:focus {
+            outline: 2px solid var(--gold);
+            outline-offset: 4px;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 18px;
+            right: 18px;
+            width: 50px;
+            height: 50px;
+            background: var(--black);
+            color: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            animation: bounce 2s infinite;
+        }
+        .scroll-indicator.up { display: none; cursor: pointer; }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-8px); }
+        }
+
+         /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 30px;
+            background: var(--black);
+            color: var(--white);
+            position: relative;
+            z-index: 1000;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: var(--gold);
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .logo img{
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+        }
+        .logo:hover { opacity: 0.9; }
+
+        /* Make the trigger (logo) relative */
+.logo {
+    position: relative;  /* Key: allows absolute positioning inside */
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;  /* Space between image and potential text */
+}
+
+/* Popup appears below the logo, left-aligned to the logo's left edge */
+.popup {
+    display: none;
+    position: absolute;
+    top: calc(100% + 12px);       /* Gap below the logo */
+    left: 0;                      /* Align left edge with logo's left edge */
+    width: 275px;
+    background: var(--white);
+    color: var(--black);
+    padding: 19px;
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    text-align: center;
+}
+
+/* Arrow in the top-left corner of the popup, pointing up to the logo */
+.popup::before {
+    content: '';
+    position: absolute;
+    top: -17px;
+    left: 20px;                   /* Adjust this to move arrow horizontally (e.g., 15px for closer to true corner) */
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 17px solid var(--gold);
+}
+
+.popup::after {
+    content: '';
+    position: absolute;
+    top: -13px;
+    left: 23px;                   /* Slight offset to nest inside the gold border */
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 13px solid var(--white);
+}
+
+        .logo:hover .popup, .logo:focus-within .popup { display: block; }
+
+        .popup img { 
+            width: 100px; 
+            height: 100px; 
+            border-radius: 50%; 
+            margin: 0 auto 15px;
+            border: 2px solid var(--gold);
+            object-fit: cover;
+        }
+
+        .popup h4 { margin: 0 0 10px; font-size: 18px; }
+        .popup p { margin: 8px 0; font-size: 14px; }
+        .popup p:last-child { 
+            color: var(--gold); 
+            margin-top: 15px; 
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 0;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.4s ease;
+        }
+
+        .nav-links a:hover::after, 
+        .nav-links a.active::after, 
+        .nav-links a:focus::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover, 
+        .nav-links a.active, 
+        .nav-links a:focus {
+            color: var(--gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 26px;
+            color: var(--gold);
+            z-index: 1001;
+        }
+
+        @media (max-width: 768px) {
+    .navbar {
+        padding: 15px 18px;
+        height: 75px;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 50%;
+        /* height: 100vh; */
+        background: rgba(0,0,0,0.98);
+        padding-top: 20px;
+        gap: 10px;
+        justify-content: flex-start;
+        align-items: flex-start;  /* Fixed: left-aligns items in the column */
+        padding-left: 20px;       /* Added: gives some breathing room from the left edge */
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        /* font-size: 15px; */
+        padding: 4px 0;
+        text-align: left;         /* Keeps text left-aligned */
+        width: 100%;              /* Ensures the full width is usable */
+        /* Removed margin: auto 0; to avoid unwanted centering */
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+    
+}
+
+
+       .page-title {
+            text-align: center;
+            padding: 35px 18px 20px;
+            background: #f5f5f5;
+        }
+
+        .page-title h1 {
+            font-size: 28px;
+            color: var(--gold);
+            margin: 0;
+        }
+
+        .gallery-section {
+            padding: 0 18px 80px;
+            background: #f5f5f5;
+            min-height: 70vh;
+        }
+
+        .gallery-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            column-count: 5;
+            column-gap: 20px;
+            column-fill: balance;
+        }
+
+        .gallery-item {
+            position: relative;
+            break-inside: avoid;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: var(--shadow);
+            /* background: #000; */
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+        }
+
+        .gallery-item img,
+        .gallery-item video {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            transition: transform 0.8s ease;
+        }
+
+        /* .gallery-item:hover img,
+        .gallery-item:hover video {
+            transform: scale(1.05);
+        } */
+
+        .reactions-overlay {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: rgba(0,0,0,0.5);
+            color: var(--white);
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+            backdrop-filter: blur(6px);
+            z-index: 10;
+        }
+
+        .reactions-overlay span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+        }
+
+        .loading {
+            width: 100%;
+            text-align: center;
+            padding: 80px 20px;
+            font-size: 20px;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .footer {
+            background: var(--gold);
+            color: var(--black);
+            text-align: center;
+            padding: 40px 18px;
+        }
+
+        .footer p {
+            margin: 10px 0;
+            font-size: 15px;
+        }
+
+        .footer a {
+            color: var(--black);
+            margin: 0 15px;
+            font-size: 30px;
+            transition: var(--transition);
+        }
+
+        .footer a:hover {
+            opacity: 0.7;
+            transform: scale(1.15);
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        @media (max-width: 1200px) { .gallery-grid { column-count: 4; } }
+        @media (max-width: 900px)  { .gallery-grid { column-count: 3; } }
+        @media (max-width: 600px)  { .gallery-grid { column-count: 2; } }
+        @media (max-width: 400px)  { .gallery-grid { column-count: 1; } }
+    </style>
+</head>
+<body>
+
+    <!-- <a href="#main-content" class="skip-link">Skip to main content</a> -->
+
+    <button class="scroll-indicator down" aria-label="Scroll down">
+        <i class='bx bx-chevron-down'></i>
+    </button>
+    <button class="scroll-indicator up" aria-label="Scroll to top">
+        <i class='bx bx-chevron-up'></i>
+    </button>
+
+    <header>
+        <nav class="navbar" aria-label="Main navigation">
+            <div class="logo" tabindex="0" aria-label="VibeByJacque logo - hover for owner info">
+                <img src="../assets/images/logo.webp" alt="VibeByJacque logo">
+                <div class="popup" role="dialog" aria-label="About the owner">
+                    <img src="../assets/images/ceo.webp" alt="Jacquline Kanuya">
+                    <h4>Jacquline Kanuya</h4>
+                    <p>Passionate owner bringing people together through exceptional food, music, and vibes.</p>
+                    <p>"Dine, Vibe and Chill"</p>
+                </div>
+            </div>
+
+            <div class="nav-links" id="nav-links">
+                <a href="../"><i class='bx bx-home-alt'></i> Home</a>
+                <a href="../menu/"><i class='bx bx-restaurant'></i> Menu</a>
+                <a href="../offer/"><i class='bx bx-gift'></i> Offer</a>
+                <a href="../services/"><i class='bx bx-conversation'></i> Services</a>
+                <a href="" class="active" aria-current="page"><i class='bx bx-images'></i> Gallery</a>
+                <a href="../help/"><i class='bx bx-help-circle'></i> Help</a>
+            </div>
+
+            <button class="menu-toggle" id="menu-toggle" aria-controls="nav-links" aria-expanded="false">
+                <i class='bx bx-menu'></i>
+            </button>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <div class="page-title">
+            <h1>Gallery</h1>
+        </div>
+
+        <section class="gallery-section" aria-labelledby="gallery-heading">
+            <h2 id="gallery-heading" class="sr-only">Mixed Media Gallery</h2>
+
+            <div class="gallery-grid" id="gallery-container">
+                <div class="loading">Loading amazing moments...</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <p>© 2025 VibeByJacque. All rights reserved.</p>
+        <p>Designed and developed by <strong>Ntihuba Wisman ❤️</strong></p>
+        <p>
+            <a href="#" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
+            <a href="#" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+            <a href="#" aria-label="WhatsApp"><i class='bx bxl-whatsapp'></i></a>
+        </p>
+    </footer>
+
+    <script>
+        // Your media data
+        const images = [
+            { type: 'image', src: "../assets/images/banner1.webp", caption: "Live music night with guests enjoying the vibe", likes: 342, shares: 58, views: 2100 },
+            { type: 'image', src: "../assets/images/banner2.webp", caption: "Signature dishes beautifully plated", likes: 418, shares: 72, views: 2900 },
+            { type: 'image', src: "../assets/images/banner3.webp", caption: "Birthday celebration vibes", likes: 289, shares: 41, views: 1800 },
+            { type: 'image', src: "../assets/images/banner4.webp", caption: "Golden hour at VibeByJacque", likes: 510, shares: 89, views: 3500 },
+            { type: 'image', src: "../assets/images/banner5.webp", caption: "Cocktail masterpieces", likes: 376, shares: 65, views: 2400 },
+            { type: 'image', src: "../assets/images/banner3.webp", caption: "Private event elegance", likes: 223, shares: 34, views: 1500 },
+            { type: 'image', src: "../assets/images/banner1.webp", caption: "Chef in action", likes: 467, shares: 81, views: 3200 },
+            { type: 'image', src: "../assets/images/banner4.webp", caption: "Weekend dance floor energy", likes: 598, shares: 112, views: 4800 },
+            // Add more images
+        ];
+
+        const localVideos = [
+            // { type: 'video', src: "../assets/videos/video1.mp4", caption: "Epic live band performance", likes: 632, shares: 145, views: 8200 },
+            // { type: 'video', src: "../assets/videos/video2.mp4", caption: "Customer happy moments compilation", likes: 478, shares: 98, views: 6100 },
+            // { type: 'video', src: "../assets/videos/video3.mp4", caption: "Behind the scenes with our chefs", likes: 389, shares: 67, views: 4300 },
+            // Add your real video files
+        ];
+
+        const container = document.getElementById('gallery-container');
+
+        // Combine and shuffle media
+        const allMedia = [...images, ...localVideos];
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        const mixedMedia = shuffleArray(allMedia);
+
+        function renderMixedGallery() {
+            container.innerHTML = '';
+
+            if (mixedMedia.length === 0) {
+                container.innerHTML = '<div class="loading">No content available yet.</div>';
+                return;
+            }
+
+            mixedMedia.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'gallery-item';
+
+                if (item.type === 'image') {
+                    itemDiv.innerHTML = `
+                        <img src="${item.src}" alt="${item.caption}" loading="lazy">
+                        <div class="reactions-overlay">
+                            <span><i class='bx bx-heart'></i> ${item.likes}</span>
+                            <span><i class='bx bx-share-alt'></i> ${item.shares}</span>
+                            <span><i class='bx bx-show'></i> ${item.views}</span>
+                        </div>
+                    `;
+                } else {
+                    // Local video with controls, muted autoplay, loop
+                    itemDiv.innerHTML = `
+                        // <video controls  autoplay loop playsinline preload="metadata">
+                            // <source src="${item.src}" type="video/mp4">
+                            // Your browser does not support the video tag.
+                        // </video>
+                        // <div class="reactions-overlay">
+                            // <span><i class='bx bx-heart'></i> ${item.likes}</span>
+                            // <span><i class='bx bx-share-alt'></i> ${item.shares}</span>
+                            // <span><i class='bx bx-show'></i> ${item.views}</span>
+                        // </div>
+                        // <div class="gallery-overlay"><p>${item.caption}</p></div>
+                    `;
+                }
+
+                container.appendChild(itemDiv);
+            });
+
+            // Ensure videos play only when in view (performance)
+            const videos = container.querySelectorAll('video');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.play();
+                    } else {
+                        entry.target.pause();
+                    }
+                });
+            }, { rootMargin: '50px' });
+
+            videos.forEach(video => observer.observe(video));
+        }
+
+        // Initial load
+        renderMixedGallery();
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('bx-menu');
+            icon.classList.toggle('bx-x');
+        });
+
+        // Scroll indicators
+        const downBtn = document.querySelector('.scroll-indicator.down');
+        const upBtn = document.querySelector('.scroll-indicator.up');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                downBtn.style.display = 'none';
+                upBtn.style.display = 'flex';
+            } else {
+                downBtn.style.display = 'flex';
+                upBtn.style.display = 'none';
+            }
+        });
+
+        upBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    </script>
+</body>
+</html>
