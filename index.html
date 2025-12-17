@@ -925,7 +925,7 @@
             <a href="#" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
             <a href="#" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
             <a href="#" aria-label="WhatsApp"><i class='bx bxl-whatsapp'></i></a>
-        </p>z
+        </p>
     </footer>
 
     <!-- Add to Home Screen Modal -->
@@ -943,18 +943,18 @@
 
    <script>
     // Menu data (unchanged)
-    const menuData = [
-        { images: ["assets/images/food1.webp","assets/images/food2.webp","assets/images/food3.webp"], items: [{n:"Grilled Chicken Platter",p:"TZS 25,000"},{n:"Spicy Wings",p:"TZS 15,000"},{n:"Fresh Salad",p:"TZS 8,000"}] },
-        { images: ["assets/images/drink1.webp","assets/images/drink2.webp"], items: [{n:"Signature Cocktail",p:"TZS 18,000"},{n:"Fresh Juice",p:"TZS 10,000"}] },
-        { images: ["assets/images/dessert1.webp","assets/images/dessert2.webp"], items: [{n:"Chocolate Lava Cake",p:"TZS 12,000"},{n:"Ice Cream",p:"TZS 7,000"}] },
-        { images: ["assets/images/special1.webp"], items: [{n:"Weekend Special",p:"TZS 35,000"}] },
-    ];
+    // const menuData = [
+    //     { images: ["assets/images/food1.webp","assets/images/food2.webp","assets/images/food3.webp"], items: [{n:"Grilled Chicken Platter",p:"TZS 25,000"},{n:"Spicy Wings",p:"TZS 15,000"},{n:"Fresh Salad",p:"TZS 8,000"}] },
+    //     { images: ["assets/images/drink1.webp","assets/images/drink2.webp"], items: [{n:"Signature Cocktail",p:"TZS 18,000"},{n:"Fresh Juice",p:"TZS 10,000"}] },
+    //     { images: ["assets/images/dessert1.webp","assets/images/dessert2.webp"], items: [{n:"Chocolate Lava Cake",p:"TZS 12,000"},{n:"Ice Cream",p:"TZS 7,000"}] },
+    //     { images: ["assets/images/special1.webp"], items: [{n:"Weekend Special",p:"TZS 35,000"}] },
+    // ];
 
     const shuffled = [...menuData, ...menuData].sort(() => Math.random() - 0.5);
     const wrapper = document.getElementById('menu-cards');
 
     // Track all inner swipers for synchronization
-    const innerSwipers = [];
+    // const innerSwipers = [];
 
     shuffled.forEach(item => {
         const slide = document.createElement('div');
@@ -2070,96 +2070,95 @@ document.querySelectorAll('.img-wrapper img').forEach(img => {
     </div>
 
    <script>
-    // Menu data (unchanged)
+    // Menu data - clean and readable
     const menuData = [
-        { images: ["assets/images/food1.webp","assets/images/food2.webp","assets/images/food3.webp"], items: [{n:"Grilled Chicken Platter",p:"TZS 25,000"},{n:"Spicy Wings",p:"TZS 15,000"},{n:"Fresh Salad",p:"TZS 8,000"}] },
-        { images: ["assets/images/drink1.webp","assets/images/drink2.webp"], items: [{n:"Signature Cocktail",p:"TZS 18,000"},{n:"Fresh Juice",p:"TZS 10,000"}] },
-        { images: ["assets/images/dessert1.webp","assets/images/dessert2.webp"], items: [{n:"Chocolate Lava Cake",p:"TZS 12,000"},{n:"Ice Cream",p:"TZS 7,000"}] },
-        { images: ["assets/images/special1.webp"], items: [{n:"Weekend Special",p:"TZS 35,000"}] },
+        {
+            images: ["assets/images/food1.webp", "assets/images/food2.webp", "assets/images/food3.webp"],
+            items: [
+                { name: "Grilled Chicken Platter", price: "TZS 25,000" },
+                { name: "Spicy Wings", price: "TZS 15,000" },
+                { name: "Fresh Salad", price: "TZS 8,000" }
+            ]
+        },
+        {
+            images: ["assets/images/drink1.webp", "assets/images/drink2.webp"],
+            items: [
+                { name: "Signature Cocktail", price: "TZS 18,000" },
+                { name: "Fresh Juice", price: "TZS 10,000" }
+            ]
+        },
+        {
+            images: ["assets/images/dessert1.webp", "assets/images/dessert2.webp"],
+            items: [
+                { name: "Chocolate Lava Cake", price: "TZS 12,000" },
+                { name: "Ice Cream", price: "TZS 7,000" }
+            ]
+        },
+        {
+            images: ["assets/images/special1.webp"],
+            items: [
+                { name: "Weekend Special", price: "TZS 35,000" }
+            ]
+        }
     ];
 
-    const shuffled = [...menuData, ...menuData].sort(() => Math.random() - 0.5);
-    const wrapper = document.getElementById('menu-cards');
+    // Duplicate and shuffle for variety
+    const shuffledMenu = [...menuData, ...menuData].sort(() => Math.random() - 0.5);
 
-    // Track all inner swipers for synchronization
+    // Container for dynamic menu cards
+    const menuCardsWrapper = document.getElementById('menu-cards');
+
+    // Array to hold inner Swiper instances
     const innerSwipers = [];
 
-    shuffled.forEach(item => {
+    // Dynamically create menu cards
+    shuffledMenu.forEach((category) => {
         const slide = document.createElement('div');
         slide.className = 'swiper-slide';
+
         slide.innerHTML = `
             <div class="menu-card">
                 <div class="menu-images">
                     <div class="swiper inner-swiper">
                         <div class="swiper-wrapper">
-                            ${item.images.map(src => `<div class="swiper-slide"><img src="${src}" alt="Dish: ${item.items[0]?.n || 'Menu item'}"></div>`).join('')}
+                            ${category.images.map(src => `
+                                <div class="swiper-slide">
+                                    <div class="img-wrapper">
+                                        <img src="${src}" alt="${category.items[0]?.name || 'Delicious dish'}" loading="lazy">
+                                        <i class='bx bx-loader-alt loader' aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            `).join('')}
                         </div>
                         <button class="swiper-button-next small-nav" aria-label="Next image"></button>
                         <button class="swiper-button-prev small-nav" aria-label="Previous image"></button>
-                        <div class="image-count">1 / ${item.images.length}</div>
+                        <div class="image-count">1 / ${category.images.length}</div>
                     </div>
                 </div>
                 <div class="menu-desc">
-                    <ul aria-label="Menu items">
-                        ${item.items.map(i => `<li><span>${i.n}</span><span>${i.p}</span></li>`).join('')}
+                    <ul aria-label="Menu items and prices">
+                        ${category.items.map(item => `
+                            <li>
+                                <span>${item.name}</span>
+                                <span>${item.price}</span>
+                            </li>
+                        `).join('')}
                     </ul>
                     <a href="https://wa.me/255123456789" class="whatsapp-btn" aria-label="Order via WhatsApp">
-                        <i class='bx bxl-whatsapp' aria-hidden="true"></i> Order on WhatsApp
+                        <i class='bx bxl-whatsapp' aria-hidden="true"></i>
+                        Order on WhatsApp
                     </a>
                 </div>
             </div>
         `;
-        wrapper.appendChild(slide);
+
+        menuCardsWrapper.appendChild(slide);
     });
 
+    // Initialize everything after DOM is ready
     document.addEventListener('DOMContentLoaded', () => {
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').catch(console.error);
-        }
-
-        // Mobile menu toggle (unchanged)
-        const toggle = document.getElementById('menu-toggle');
-        const nav = document.getElementById('nav-links');
-        toggle.addEventListener('click', () => {
-            const expanded = toggle.getAttribute('aria-expanded') === 'true';
-            toggle.setAttribute('aria-expanded', !expanded);
-            nav.classList.toggle('active');
-            toggle.querySelector('i').classList.toggle('bx-menu');
-            toggle.querySelector('i').classList.toggle('bx-x');
-        });
-
-        // === HERO SWIPER - Autoplay with pause on hover ===
-        const heroSwiper = new Swiper('.hero-swiper', {
-            loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            navigation: {
-                nextEl: '.hero-swiper .swiper-button-next',
-                prevEl: '.hero-swiper .swiper-button-prev',
-            },
-        });
-
-        const heroContainer = document.querySelector('.hero-swiper');
-        heroContainer.addEventListener('mouseenter', () => heroSwiper.autoplay.stop());
-        heroContainer.addEventListener('mouseleave', () => heroSwiper.autoplay.start());
-
-        // === MENU CAROUSEL (Outer) - NO autoplay here, we control it manually ===
-        const menuSwiper = new Swiper('.menu-swiper', {
-            slidesPerView: 1,
-            spaceBetween: 25,
-            loop: true,
-            navigation: {
-                nextEl: '.menu-swiper .swiper-button-next',
-                prevEl: '.menu-swiper .swiper-button-prev',
-            },
-            breakpoints: { 769: { slidesPerView: 2 } },
-            autoplay: false  // We control timing manually
-        });
-
-        // === INNER SWIPERS - Auto slide every 3 seconds ===
-        document.querySelectorAll('.inner-swiper').forEach(el => {
+        // Initialize all inner image carousels
+        document.querySelectorAll('.inner-swiper').forEach((el) => {
             const swiper = new Swiper(el, {
                 loop: true,
                 autoplay: {
@@ -2175,129 +2174,64 @@ document.querySelectorAll('.img-wrapper img').forEach(img => {
                         const counter = el.closest('.menu-images').querySelector('.image-count');
                         counter.textContent = `${s.realIndex + 1} / ${s.slides.length}`;
                     },
-                    // Track when one full loop completes (back to first slide)
                     slideChange: (s) => {
                         if (s.realIndex === 0 && s.previousIndex === s.slides.length - 1) {
-                            // One full cycle completed
                             s.hasCompletedCycle = true;
                         }
                     }
                 }
             });
-            swiper.hasCompletedCycle = false; // custom flag
+            swiper.hasCompletedCycle = false;
             innerSwipers.push(swiper);
         });
 
-        // === SYNCHRONIZED AUTO-ADVANCE FOR MENU CAROUSEL ===
+        // Main menu carousel
+        const menuSwiper = new Swiper('.menu-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 25,
+            loop: true,
+            breakpoints: {
+                769: { slidesPerView: 2 }
+            },
+            autoplay: false // Controlled manually
+        });
+
         let advanceTimeout;
 
         function scheduleNextCardAdvance() {
             clearTimeout(advanceTimeout);
 
-            // Wait until ALL visible inner swipers have completed at least one full cycle
-            const activeSlides = menuSwiper.slides.slice(menuSwiper.activeIndex, menuSwiper.activeIndex + menuSwiper.params.slidesPerView);
-            const visibleInners = activeSlides.map(slide => {
-                return innerSwipers[Array.from(menuSwiper.slides).indexOf(slide)];
-            }).filter(Boolean);
+            const activeSlides = menuSwiper.slides.slice(
+                menuSwiper.activeIndex,
+                menuSwiper.activeIndex + menuSwiper.params.slidesPerView
+            );
+
+            const visibleInners = activeSlides.map(slide =>
+                innerSwipers[Array.from(menuSwiper.slides).indexOf(slide)]
+            ).filter(Boolean);
 
             const allCompleted = visibleInners.every(s => s.hasCompletedCycle);
 
             if (allCompleted) {
-                // Reset flags for next round
                 visibleInners.forEach(s => s.hasCompletedCycle = false);
-
-                // Wait 5 seconds then advance
                 advanceTimeout = setTimeout(() => {
                     menuSwiper.slideNext();
-                    scheduleNextCardAdvance(); // Schedule next
+                    scheduleNextCardAdvance();
                 }, 5000);
             } else {
-                // Check again in 500ms
                 advanceTimeout = setTimeout(scheduleNextCardAdvance, 500);
             }
         }
 
-        // Start the synchronization after first render
+        // Restart sync when user manually changes slide
         menuSwiper.on('slideChange', () => {
-            // Reset cycle flags when changing card
             innerSwipers.forEach(s => s.hasCompletedCycle = false);
             scheduleNextCardAdvance();
         });
 
-        // Initial start
+        // Start auto-advance
         scheduleNextCardAdvance();
-
-        // Scroll indicator (unchanged)
-        const down = document.querySelector('.scroll-indicator.down');
-        const up = document.querySelector('.scroll-indicator.up');
-        const status = document.getElementById('scroll-status');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 200) {
-                down.style.display = 'none';
-                up.style.display = 'flex';
-                status.textContent = "Scroll to top button available";
-            } else {
-                down.style.display = 'flex';
-                up.style.display = 'none';
-                status.textContent = "Scroll down indicator active";
-            }
-        });
-
-        up.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
-        down.style.display = 'flex';
-
-        // A2HS logic (unchanged - kept as is)
-        let deferredPrompt;
-        const modal = document.getElementById('a2hs-modal');
-        const instructions = document.getElementById('a2hs-instructions');
-        const img1 = document.getElementById('a2hs-image1');
-        const img2 = document.getElementById('a2hs-image2');
-        const actionBtn = document.getElementById('a2hs-action-btn');
-        const closeBtn = document.getElementById('a2hs-close-btn');
-
-        const hideModal = () => {
-            modal.classList.remove('active');
-            localStorage.setItem('a2hs_shown_2025', Date.now().toString());
-        };
-        closeBtn.addEventListener('click', hideModal);
-
-        const lastShown = localStorage.getItem('a2hs_shown_2025');
-        if (lastShown && (Date.now() - parseInt(lastShown) < 7 * 24 * 60 * 60 * 1000)) return;
-
-        const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-        if (isStandalone) return;
-
-        const ua = navigator.userAgent.toLowerCase();
-        const isIOS = /iphone|ipad|ipod/.test(ua);
-        const isAndroid = /android/.test(ua);
-        if (!isIOS && !isAndroid) return;
-
-        if (isAndroid) {
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                deferredPrompt = e;
-                instructions.innerHTML = '<p>Tap <strong>Install</strong> below to add VibeByJacque as an app!</p>';
-                img1.style.display = 'none';
-                img2.style.display = 'none';
-                actionBtn.textContent = 'Install App';
-                actionBtn.onclick = () => {
-                    deferredPrompt.prompt();
-                    deferredPrompt.userChoice.then(hideModal);
-                };
-                modal.classList.add('active');
-            });
-        } else if (isIOS) {
-            instructions.innerHTML = `<p>1. Tap the <strong>Share</strong> button in Safari.</p><p>2. Scroll and tap <strong>Add to Home Screen</strong>.</p><p>3. Tap <strong>Add</strong>.</p>`;
-            img1.src = 'https://www.wikihow.com/images/6/65/Add-a-Link-Button-to-the-Home-Screen-of-an-iPhone-Step-5-Version-5.jpg';
-            img1.style.display = 'block';
-            img2.src = 'https://assets.content.technologyadvice.com/638496560734500011_fb901c5d5a.webp';
-            img2.style.display = 'block';
-            actionBtn.textContent = 'OK';
-            actionBtn.onclick = hideModal;
-            modal.classList.add('active');
-        }
     });
 </script>
 </body>
->>>>>>> 40d1b0c4b1c24ee78312e14a07473dc2ed4f3ee0
+</html>
