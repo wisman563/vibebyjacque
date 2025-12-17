@@ -942,54 +942,10 @@
     </div>
 
    <script>
-    // Menu data (unchanged)
-    // const menuData = [
-    //     { images: ["assets/images/food1.webp","assets/images/food2.webp","assets/images/food3.webp"], items: [{n:"Grilled Chicken Platter",p:"TZS 25,000"},{n:"Spicy Wings",p:"TZS 15,000"},{n:"Fresh Salad",p:"TZS 8,000"}] },
-    //     { images: ["assets/images/drink1.webp","assets/images/drink2.webp"], items: [{n:"Signature Cocktail",p:"TZS 18,000"},{n:"Fresh Juice",p:"TZS 10,000"}] },
-    //     { images: ["assets/images/dessert1.webp","assets/images/dessert2.webp"], items: [{n:"Chocolate Lava Cake",p:"TZS 12,000"},{n:"Ice Cream",p:"TZS 7,000"}] },
-    //     { images: ["assets/images/special1.webp"], items: [{n:"Weekend Special",p:"TZS 35,000"}] },
-    // ];
 
     const shuffled = [...menuData, ...menuData].sort(() => Math.random() - 0.5);
     const wrapper = document.getElementById('menu-cards');
 
-    // Track all inner swipers for synchronization
-    // const innerSwipers = [];
-
-    shuffled.forEach(item => {
-        const slide = document.createElement('div');
-        slide.className = 'swiper-slide';
-        slide.innerHTML = `
-            <div class="menu-card">
-                <div class="menu-images">
-                    <div class="swiper inner-swiper">
-                        <div class="swiper-wrapper">
-                            ${item.images.map(src => `
-                            <div class="swiper-slide">
-                            <div class="img-wrapper">
-                            <img src="${src}" alt="Dish: ${item.items[0]?.n || 'Menu item'}">
-                            <i class='bx bx-loader-alt loader' aria-hidden="true"></i>
-                               </div>
-                           </div>
-                       `).join('')}
-                        </div>
-                        <button class="swiper-button-next small-nav" aria-label="Next image"></button>
-                        <button class="swiper-button-prev small-nav" aria-label="Previous image"></button>
-                        <div class="image-count">1 / ${item.images.length}</div>
-                    </div>
-                </div>
-                <div class="menu-desc">
-                    <ul aria-label="Menu items">
-                        ${item.items.map(i => `<li><span>${i.n}</span><span>${i.p}</span></li>`).join('')}
-                    </ul>
-                    <a href="https://wa.me/255123456789" class="whatsapp-btn" aria-label="Order via WhatsApp">
-                        <i class='bx bxl-whatsapp' aria-hidden="true"></i> Order on WhatsApp
-                    </a>
-                </div>
-            </div>
-        `;
-        wrapper.appendChild(slide);
-    });
 
     document.addEventListener('DOMContentLoaded', () => {
         if ('serviceWorker' in navigator) {
