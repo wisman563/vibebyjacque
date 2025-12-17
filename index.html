@@ -944,8 +944,7 @@
    <script>
 
     const shuffled = [...menuData, ...menuData].sort(() => Math.random() - 0.5);
-    const wrapper = document.getElementById('menu-cards');
-
+    const wrapper = document.getElementById('menu-cards')
 
     document.addEventListener('DOMContentLoaded', () => {
         if ('serviceWorker' in navigator) {

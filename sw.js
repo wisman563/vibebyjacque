@@ -9,6 +9,12 @@ const ASSETS_TO_CACHE = [
     'assets/images/banner3.webp',
     'assets/images/banner4.webp',
     'assets/images/banner5.webp',
+    'assets/images/service1.webp',
+    'assets/images/service2.webp',
+    'assets/images/service3.webp',
+    'assets/images/service4.webp',
+    'assets/images/service5.webp',
+
     // Add more critical assets if you want (images, fonts, etc.)
 ];
 
