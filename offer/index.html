@@ -3,12 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VibeByJacque - Offers</title>
     
-    <!-- Google Fonts -->
+    <!-- Primary SEO Meta Tags -->
+    <title>VibeByJacque - Special Offers & Promotions in UDOM, Dodoma</title>
+    <meta name="description" content="Grab exclusive deals at VibeByJacque! Enjoy discounts on weekend dinners, happy hour cocktails, group bookings, lunch combos and more. Limited-time offers in Dodoma, Tanzania.">
+    <meta name="keywords" content="VibeByJacque offers, special promotions, discounts Dodoma, happy hour UDOM, weekend deals Tanzania, group booking discount, lunch combo Dodoma, restaurant deals Tanzania">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Ntihuba Wisman">
+
+    <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+    <meta property="og:title" content="VibeByJacque - Special Offers & Promotions">
+    <meta property="og:description" content="Limited-time deals: 30% off dinners, Buy 1 Get 1 cocktails, group discounts & more! Don't miss out at UDOM's top vibe spot.">
+    <meta property="og:image" content="https://wisman563.github.io/vibebyjacque/assets/images/offer-preview.webp">
+    <meta property="og:url" content="https://wisman563.github.io/vibebyjacque/offer/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VibeByJacque - Special Offers & Promotions">
+    <meta name="twitter:description" content="Exclusive deals on food, drinks & events at VibeByJacque in UDOM, Dodoma!">
+    <meta name="twitter:image" content="https://wisman563.github.io/vibebyjacque/assets/images/offer-preview.webp">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://wisman563.github.io/vibebyjacque/offer/">
+
+    <!-- PWA & Mobile -->
+    <link rel="manifest" href="../manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="VibeByJacque">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+    <link rel="apple-touch-startup-image" href="../assets/images/splash.png">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../assets/images/logo.webp" type="image/webp">
+
+    <!-- Google Fonts, Boxicons -->
     <link href="https://fonts.googleapis.com/css2?family=Ropa+Sans&family=Inter&display=swap" rel="stylesheet">
-    <!-- Boxicons -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
     <!-- Swiper -->
     <link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css">
     <script defer src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
@@ -560,5 +595,38 @@
             down.style.display = 'flex';
         });
     </script>
+
+    <!-- Structured Data for Offers (Rich Results) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  "name": "Special Offers at VibeByJacque",
+  "description": "Current promotions and deals at VibeByJacque restaurant in UDOM, Dodoma",
+  "url": "https://wisman563.github.io/vibebyjacque/offer/",
+  "itemListElement": [
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Weekend Dinner Special"
+      },
+      "price": "25000",
+      "priceCurrency": "TZS",
+      "description": "30% off on all main courses Friday & Saturday"
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Happy Hour Cocktails"
+      },
+      "price": "18000",
+      "priceCurrency": "TZS",
+      "description": "Buy 1 Get 1 Free cocktails 6PM-8PM"
+    }
+  ]
+}
+</script>
 </body>
 </html>
