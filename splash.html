@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeByJacque</title>
+    
+    <!-- Ropa Sans Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Ropa+Sans&display=swap" rel="stylesheet">
+    
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: #000000;
+            color: #FFD700;
+            font-family: 'Ropa Sans', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .splash-container {
+            text-align: center;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid #FFD700;
+            margin: 0 auto 30px;
+            animation: pulse 2s infinite alternate;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin: 0 0 12px;
+            letter-spacing: 2px;
+            animation: slideUp 1s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+
+        p.tagline {
+            font-size: 18px;
+            margin: 0 0 40px;
+            opacity: 0;
+            animation: slideUp 1s ease-out 0.8s forwards;
+        }
+
+        p.credit {
+            font-size: 14px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 1.5s forwards;
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            from { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.6); }
+            to { box-shadow: 0 0 0 20px rgba(255, 215, 0, 0); }
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 2px solid transparent;
+            border-top: 4px solid #FFD700;
+            border-radius: 50%;
+            animation: spin 1.2s linear infinite;
+            margin: 30px auto 0;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.2s forwards, spin 1.2s linear infinite 1.2s;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="splash-container">
+        <img src="assets/images/logo.webp" alt="VibeByJacque Logo" class="logo">
+        <h1>VibeByJacque</h1>
+        <p class="tagline">Dine, Vibe and Chill</p>
+        <div class="loader"></div>
+        <p class="credit">Developed and maintained by Ntihuba Wisman ❤️</p>
+    </div>
+
+    <script>
+        // Auto redirect to main app after animation
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 3500); // 3.5 seconds — enough to enjoy the animation
+    </script>
+</body>
+</html>

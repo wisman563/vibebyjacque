@@ -2,6 +2,7 @@ const CACHE_NAME = 'vibebyjacque-v2'; // Changed version to force update
 const ASSETS_TO_CACHE = [
     './',
     'index.html',
+    'splash.html',
     'manifest.json',
     'assets/images/logo.webp',
     'assets/images/banner1.webp',

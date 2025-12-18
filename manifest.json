@@ -2,7 +2,7 @@
   "name": "VibeByJacque",
   "short_name": "VibeByJacque",
   "description": "Dine, Vibe and Chill at VibeByJacque - UDOM, Tanzania",
-  "start_url": "/",
+  "start_url": "/splash.html",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#FFD700",
